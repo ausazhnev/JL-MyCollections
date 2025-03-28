@@ -1,7 +1,7 @@
 import java.lang.reflect.Array;
 import java.util.Arrays;
 
-public class CarArrayList implements CarList{
+public class CarArrayList implements CarList {
     private Car[] array = new Car[10];
     private int size = 0;
 
@@ -13,24 +13,24 @@ public class CarArrayList implements CarList{
 
     @Override
     public void add(Car car) {
-        if (size >= array.length) {
-            array = Arrays.copyOf(array, array.length * 2);
-            // Old
-//            Car[] newArray = new Car[array.length * 2];
-//            for (int i = 0; i < array.length; i++) {
-//                newArray[i] = array[i];
-//                array = newArray;
-//                newArray = null;
-//            }
-        }
-
+        increaseArray();
         array[size] = car;
         this.size++;
     }
 
     @Override
+    public void add(Car car, int index) {
+        increaseArray();
+        for (int i = this.size; i > index; i--) {
+            this.array[i] = this.array[i - 1];
+        }
+        this.array[index] = car;
+        this.size++;
+    }
+
+    @Override
     public boolean remove(Car car) {
-        for (int i = 0; i < this.size; i ++) {
+        for (int i = 0; i < this.size; i++) {
             if (array[i].equals(car)) {
                 return removeAt(i);
             }
@@ -62,6 +62,19 @@ public class CarArrayList implements CarList{
     private void checkIndex(int index) {
         if (index < 0 || index >= this.size) {
             throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private void increaseArray () {
+        if (size >= array.length) {
+            array = Arrays.copyOf(array, array.length * 2);
+            // Old
+//            Car[] newArray = new Car[array.length * 2];
+//            for (int i = 0; i < array.length; i++) {
+//                newArray[i] = array[i];
+//                array = newArray;
+//                newArray = null;
+//            }
         }
     }
 }
