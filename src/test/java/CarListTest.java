@@ -9,6 +9,7 @@ class CarListTest {
 
     @BeforeEach
     void setUp() throws Exception {
+        carList = new CarArrayList();
         for (int i = 0; i < 100; i++) {
             carList.add(new Car("Brand" + i, i));
         }
@@ -28,6 +29,7 @@ class CarListTest {
     @Test
     public void whenElementRemoveThenSizeMustBuDecreased() {
         Car car = new Car("Mazda", 42);
+        carList.add(car);
         assertEquals(101, carList.size());
         assertTrue(carList.remove(car));
         assertEquals(100, carList.size());
