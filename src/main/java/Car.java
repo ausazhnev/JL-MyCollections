@@ -24,4 +24,9 @@ public class Car {
             return false;
         }
     }
+
+    @Override
+    public int hashCode() {
+        return this.brand.hashCode() + this.number;
+    }
 }
