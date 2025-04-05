@@ -14,4 +14,14 @@ public class Car {
     public int getNumber() {
         return number;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Car) {
+            Car car = (Car) obj;
+            return this.brand.equals(car.brand) && this.number == car.number;
+        } else {
+            return false;
+        }
+    }
 }
