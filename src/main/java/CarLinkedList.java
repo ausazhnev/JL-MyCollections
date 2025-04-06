@@ -23,7 +23,7 @@ public class CarLinkedList implements CarList {
     }
 
     @Override
-    public void add(Car car) {
+    public boolean add(Car car) {
         if (this.size == 0) {
             Node node = new Node(null, car, null);
             this.first = node;
@@ -34,16 +34,16 @@ public class CarLinkedList implements CarList {
             secondLast.next = last;
         }
         this.size++;
+        return true;
     }
 
     @Override
-    public void add(Car car, int index) {
+    public boolean add(Car car, int index) {
         if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
         if (index == size) {
-            add(car);
-            return;
+            return add(car);
         }
 
         Node nodeNext = getNode(index);
@@ -58,6 +58,7 @@ public class CarLinkedList implements CarList {
             first = newNode;
         }
         this.size++;
+        return true;
     }
 
     @Override

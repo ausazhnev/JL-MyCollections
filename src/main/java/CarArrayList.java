@@ -1,4 +1,3 @@
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class CarArrayList implements CarList {
@@ -12,14 +11,15 @@ public class CarArrayList implements CarList {
     }
 
     @Override
-    public void add(Car car) {
+    public boolean add(Car car) {
         increaseArray();
         array[size] = car;
         this.size++;
+        return true;
     }
 
     @Override
-    public void add(Car car, int index) {
+    public boolean add(Car car, int index) {
         increaseArray();
         if (index < 0 || index >= size) {
             throw new IndexOutOfBoundsException();
@@ -32,6 +32,7 @@ public class CarArrayList implements CarList {
 //        }
         this.array[index] = car;
         this.size++;
+        return true;
     }
 
     @Override
